@@ -15,6 +15,7 @@ const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
 export default function Snakecase () {
 	const [pause, setPause] = React.useState(true);
 	const [direction, setDirection] = React.useState(directions.Right);
+	const [score, setScore] = React.useState(0);
 
 	const [height, setHeight] = React.useState(0);
 	const [width, setWidth] = React.useState(0);
@@ -107,9 +108,9 @@ export default function Snakecase () {
 	});
 
 	return (
-		<div className="Snakecase bg-slate-300 text-white font-bold">
+		<div className="Snakecase bg-slate-300 text-white font-bold select-none">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
-				<Header />
+				<Header direction={direction} score={score} />
 				<div id="Maze" className="grow flex bg-slate-50 relative overflow-hidden border-4 border-slate-400">
 					<div className="relative m-auto" style={{
 						height: (rows * rowHeight) + "px",
