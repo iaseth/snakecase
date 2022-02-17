@@ -73,12 +73,20 @@ export default function Snakecase () {
 		if (event.altKey || event.shiftKey || event.ctrlKey) return;
 		event.preventDefault();
 
+		if (keyCode === 32) {
+			// spacebar was pressed
+			setPause(pause => !pause);
+			return;
+		}
+
+		// no direction changes when the games is paused
+		if (pause) return;
+
 		switch (keyCode) {
 			case 37: if (direction === directions.Up || direction === directions.Down) setDirection(directions.Left); break;
 			case 38: if (direction === directions.Left || direction === directions.Right) setDirection(directions.Up); break;
 			case 39: if (direction === directions.Up || direction === directions.Down) setDirection(directions.Right); break;
 			case 40: if (direction === directions.Left || direction === directions.Right) setDirection(directions.Down); break;
-			case 32: setPause(pause => !pause); break;
 			default: console.log(`Key: ${keyCode}`);
 		}
 	}
