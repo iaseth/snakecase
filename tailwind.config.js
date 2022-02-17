@@ -1,8 +1,8 @@
 module.exports = {
   content: [
     "src/*.{js,json}",
-    "src/*/*.js",
-    "src/*/*/*.js"
+    "src/Snakecase/*.js",
+    "src/Snakecase/*/*.js"
   ],
   theme: {
     extend: {},

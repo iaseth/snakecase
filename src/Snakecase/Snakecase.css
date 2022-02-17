@@ -1,6 +1,24 @@
 
+.SnakeBlock {
+	@apply absolute;
+	padding: 1px;
+}
+
 .SnakeBlock:first-child {
+	padding: 0px;
+}
+
+.SnakeBlock > div {
+	@apply h-full w-full;
 	@apply bg-red-600;
+}
+
+.SnakeBlock:first-child > div {
+	@apply bg-red-800;
+}
+
+.SnakeBlock:last-child > div {
+	@apply bg-red-400;
 }
 
 

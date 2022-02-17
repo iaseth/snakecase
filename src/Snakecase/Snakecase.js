@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 
 export default function Snakecase () {
-	const rows = 25, columns = 25;
+	const rows = 27, columns = 48;
 	const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
 
 	const [pause, setPause] = React.useState(true);
@@ -24,8 +24,8 @@ export default function Snakecase () {
 		[5, 2]
 	]);
 
-	let rowHeight = Math.floor(height / rows);
-	let columnWidth = Math.floor(width / columns);
+	let rowHeight = Math.round(height / rows);
+	let columnWidth = Math.round(width / columns);
 
 	let snakeBlocks = positions.map((p, i) => {
 		let styles = {
@@ -35,7 +35,9 @@ export default function Snakecase () {
 			top: ((p[0] % rows) * rowHeight) + "px"
 		};
 
-		return <div key={i} className="SnakeBlock absolute bg-red-400" style={styles}></div>;
+		return <div key={i} className="SnakeBlock" style={styles}>
+			<div></div>
+		</div>;
 	});
 
 
@@ -51,6 +53,7 @@ export default function Snakecase () {
 	}, []);
 
 	function updateGame () {
+		if (pause) return;
 		let newCell = [...positions[0]];
 		switch (direction) {
 			case directions.Up: newCell[0]--; break;
@@ -94,7 +97,7 @@ export default function Snakecase () {
 		<div className="Snakecase bg-slate-300">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
 				<Header />
-				<div id="Maze" className="grow bg-slate-50 px-4 py-4 relative">
+				<div id="Maze" className="grow bg-slate-50 px-4 py-4 relative overflow-hidden border-4 border-slate-400">
 					{snakeBlocks}
 				</div>
 				<Footer />
