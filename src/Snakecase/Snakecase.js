@@ -107,10 +107,14 @@ export default function Snakecase () {
 		};
 	});
 
+	let headerProps = {
+		direction, pause, score
+	};
+
 	return (
 		<div className="Snakecase bg-slate-300 text-white font-bold select-none">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
-				<Header direction={direction} score={score} />
+				<Header {...headerProps} />
 				<div id="Maze" className="grow flex bg-slate-50 relative overflow-hidden border-4 border-slate-400">
 					<div className="relative m-auto" style={{
 						height: (rows * rowHeight) + "px",

@@ -2,7 +2,7 @@
 
 
 export default function Header ({
-	direction, score
+	direction, pause, score
 }) {
 
 	return (
