@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 import {getRowMarkings, getColumnMarkings} from './Markings';
 
-const rows = 27, columns = 48;
+const rows = 18, columns = 32;
 const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
 
 
@@ -67,6 +67,11 @@ export default function Snakecase () {
 	}, []);
 
 	function cellIsEmpty (x, y) {
+		for (let position of positions) {
+			if (x === position[0] && y === position[1]) {
+				return false;
+			}
+		}
 		return true;
 	}
 
