@@ -24,8 +24,8 @@ export default function Snakecase () {
 		[5, 2]
 	]);
 
-	let rowHeight = Math.round(height / rows);
-	let columnWidth = Math.round(width / columns);
+	let rowHeight = Math.floor(height / rows);
+	let columnWidth = Math.floor(width / columns);
 
 	let snakeBlocks = positions.map((p, i) => {
 		let styles = {
@@ -40,16 +40,16 @@ export default function Snakecase () {
 		</div>;
 	});
 
-	let rowMarkings = [...Array(rows)].map((v, i) => {
+	let rowMarkings = [...Array(rows + 1)].map((v, i) => {
 		let styles = {
-			top: ((i % rows) * rowHeight - 1) + "px"
+			top: (i * rowHeight - 1) + "px"
 		};
 		return <div key={i} className="RowMarking" style={styles}></div>;
 	});
 
-	let columnMarkings = [...Array(columns)].map((v, i) => {
+	let columnMarkings = [...Array(columns + 1)].map((v, i) => {
 		let styles = {
-			left: ((i % columns) * columnWidth - 1) + "px"
+			left: (i * columnWidth - 1) + "px"
 		};
 		return <div key={i} className="ColumnMarking" style={styles}></div>;
 	});
@@ -111,11 +111,16 @@ export default function Snakecase () {
 		<div className="Snakecase bg-slate-300">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
 				<Header />
-				<div id="Maze" className="grow bg-slate-50 relative overflow-hidden border-4 border-slate-400">
-					{rowMarkings}
-					{columnMarkings}
-					<div>
-						{snakeBlocks}
+				<div id="Maze" className="grow flex bg-slate-50 relative overflow-hidden border-4 border-slate-400">
+					<div className="relative m-auto" style={{
+						height: (rows * rowHeight) + "px",
+						width: (columns * columnWidth) + "px"
+					}}>
+						{rowMarkings}
+						{columnMarkings}
+						<div>
+							{snakeBlocks}
+						</div>
 					</div>
 				</div>
 				<Footer />
