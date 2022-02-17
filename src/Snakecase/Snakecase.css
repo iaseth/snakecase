@@ -1,0 +1,6 @@
+
+.SnakeBlock:first-child {
+	@apply bg-red-600;
+}
+
+
