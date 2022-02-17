@@ -2,6 +2,7 @@
 .Food {
 	@apply absolute;
 	@apply bg-green-500;
+	@apply rounded-full;
 }
 
 .SnakeBlock {

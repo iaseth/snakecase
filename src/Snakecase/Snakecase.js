@@ -92,7 +92,8 @@ export default function Snakecase () {
 		let newPositions = [[x, y], ...positions];
 		let justHadDinner = false;
 		if (x === foodPosition[0] && y === foodPosition[1]) {
-			setScore(score => score + foodLife);
+			let scoreAdder = Math.ceil(foodLife * 10 / maxFoodLife);
+			setScore(score => score + scoreAdder);
 			justHadDinner = true;
 		} else {
 			newPositions.pop();
@@ -134,7 +135,7 @@ export default function Snakecase () {
 	React.useEffect(function () {
 		document.addEventListener('keydown', processKeyboardInput, false);
 		window.addEventListener('resize', setDimensions);
-		const id = setInterval(updateGame, 400);
+		const id = setInterval(updateGame, 250);
 
 		return function cleanup () {
 			document.removeEventListener('keydown', processKeyboardInput, false);
