@@ -90,10 +90,16 @@ export default function Snakecase () {
 		x = (x + rows) % rows;
 		y = (y + columns) % columns;
 		let newPositions = [[x, y], ...positions];
-		newPositions.pop();
+		let justHadDinner = false;
+		if (x === foodPosition[0] && y === foodPosition[1]) {
+			setScore(score => score + foodLife);
+			justHadDinner = true;
+		} else {
+			newPositions.pop();
+		}
 		setPositions(newPositions);
 
-		if (foodLife === 0) {
+		if (justHadDinner || foodLife === 0) {
 			let [fx, fy] = getRandomEmptyCell();
 			setFoodPosition([fx, fy]);
 			setFoodLife(maxFoodLife);
