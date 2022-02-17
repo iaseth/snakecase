@@ -1,4 +1,18 @@
 
+.RowMarking {
+	position: absolute;
+	height: 1px;
+	@apply w-full;
+	@apply bg-slate-300;
+}
+
+.ColumnMarking {
+	position: absolute;
+	width: 1px;
+	@apply h-full;
+	@apply bg-slate-300;
+}
+
 .SnakeBlock {
 	@apply absolute;
 	padding: 1px;

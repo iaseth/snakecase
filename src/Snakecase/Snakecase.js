@@ -40,6 +40,20 @@ export default function Snakecase () {
 		</div>;
 	});
 
+	let rowMarkings = [...Array(rows)].map((v, i) => {
+		let styles = {
+			top: ((i % rows) * rowHeight - 1) + "px"
+		};
+		return <div key={i} className="RowMarking" style={styles}></div>;
+	});
+
+	let columnMarkings = [...Array(columns)].map((v, i) => {
+		let styles = {
+			left: ((i % columns) * columnWidth - 1) + "px"
+		};
+		return <div key={i} className="ColumnMarking" style={styles}></div>;
+	});
+
 
 
 	function setDimensions () {
@@ -97,8 +111,12 @@ export default function Snakecase () {
 		<div className="Snakecase bg-slate-300">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
 				<Header />
-				<div id="Maze" className="grow bg-slate-50 px-4 py-4 relative overflow-hidden border-4 border-slate-400">
-					{snakeBlocks}
+				<div id="Maze" className="grow bg-slate-50 relative overflow-hidden border-4 border-slate-400">
+					{rowMarkings}
+					{columnMarkings}
+					<div>
+						{snakeBlocks}
+					</div>
 				</div>
 				<Footer />
 			</div>
