@@ -5,6 +5,8 @@ import './Snakecase.css';
 import Header from './Header';
 import Footer from './Footer';
 
+import {getRowMarkings, getColumnMarkings} from './Markings';
+
 
 
 export default function Snakecase () {
@@ -39,22 +41,6 @@ export default function Snakecase () {
 			<div></div>
 		</div>;
 	});
-
-	let rowMarkings = [...Array(rows + 1)].map((v, i) => {
-		let styles = {
-			top: (i * rowHeight - 1) + "px"
-		};
-		return <div key={i} className="RowMarking" style={styles}></div>;
-	});
-
-	let columnMarkings = [...Array(columns + 1)].map((v, i) => {
-		let styles = {
-			left: (i * columnWidth - 1) + "px"
-		};
-		return <div key={i} className="ColumnMarking" style={styles}></div>;
-	});
-
-
 
 	function setDimensions () {
 		setHeight(document.getElementById("Maze").offsetHeight);
@@ -116,8 +102,8 @@ export default function Snakecase () {
 						height: (rows * rowHeight) + "px",
 						width: (columns * columnWidth) + "px"
 					}}>
-						{rowMarkings}
-						{columnMarkings}
+						{getRowMarkings(rows, rowHeight)}
+						{getColumnMarkings(columns, columnWidth)}
 						<div>
 							{snakeBlocks}
 						</div>
