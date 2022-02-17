@@ -1,4 +1,9 @@
 
+.Food {
+	@apply absolute;
+	@apply bg-green-500;
+}
+
 .SnakeBlock {
 	@apply absolute;
 	padding: 2px;

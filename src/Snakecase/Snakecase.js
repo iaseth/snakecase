@@ -27,6 +27,10 @@ export default function Snakecase () {
 		[5, 2]
 	]);
 
+	const [foodPosition, setFoodPosition] = React.useState([-5, -5]);
+	const [foodLife, setFoodLife] = React.useState(0);
+	const maxFoodLife = rows + columns;
+
 	let rowHeight = Math.floor(height / rows);
 	let columnWidth = Math.floor(width / columns);
 
@@ -46,6 +50,12 @@ export default function Snakecase () {
 		</div>;
 	});
 
+	let food = <div className="Food" style={{
+		left: ((foodPosition[1] % columns) * columnWidth) + "px",
+		top: ((foodPosition[0] % rows) * rowHeight) + "px",
+		...snakeBlocksStyle
+	}}></div>;
+
 	function setDimensions () {
 		setHeight(document.getElementById("Maze").offsetHeight);
 		setWidth(document.getElementById("Maze").offsetWidth);
@@ -55,6 +65,18 @@ export default function Snakecase () {
 	React.useEffect(function () {
 		setDimensions();
 	}, []);
+
+	function cellIsEmpty (x, y) {
+		return true;
+	}
+
+	function getRandomEmptyCell () {
+		while (true) {
+			let x = Math.floor(Math.random() * rows);
+			let y = Math.floor(Math.random() * columns);
+			if (cellIsEmpty(x, y)) return [x, y];
+		}
+	}
 
 	function updateGame () {
 		if (pause) return;
@@ -70,6 +92,14 @@ export default function Snakecase () {
 		let newPositions = [[x, y], ...positions];
 		newPositions.pop();
 		setPositions(newPositions);
+
+		if (foodLife === 0) {
+			let [fx, fy] = getRandomEmptyCell();
+			setFoodPosition([fx, fy]);
+			setFoodLife(maxFoodLife);
+		} else {
+			setFoodLife(foodLife => (foodLife-1));
+		}
 	}
 
 	function processKeyboardInput (event) {
@@ -108,7 +138,7 @@ export default function Snakecase () {
 	});
 
 	let headerProps = {
-		direction, pause, score
+		direction, foodLife, pause, score
 	};
 
 	return (
@@ -122,6 +152,9 @@ export default function Snakecase () {
 					}}>
 						{getRowMarkings(rows, rowHeight)}
 						{getColumnMarkings(columns, columnWidth)}
+						<div>
+							{food}
+						</div>
 						<div>
 							{snakeBlocks}
 						</div>
