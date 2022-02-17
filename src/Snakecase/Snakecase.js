@@ -29,12 +29,15 @@ export default function Snakecase () {
 	let rowHeight = Math.floor(height / rows);
 	let columnWidth = Math.floor(width / columns);
 
+	let snakeBlocksStyle = {
+		width: (columnWidth-1) + "px",
+		height: (rowHeight-1) + "px",
+	};
 	let snakeBlocks = positions.map((p, i) => {
 		let styles = {
-			width: (columnWidth-2) + "px",
-			height: (rowHeight-2) + "px",
 			left: ((p[1] % columns) * columnWidth) + "px",
-			top: ((p[0] % rows) * rowHeight) + "px"
+			top: ((p[0] % rows) * rowHeight) + "px",
+			...snakeBlocksStyle
 		};
 
 		return <div key={i} className="SnakeBlock" style={styles}>
