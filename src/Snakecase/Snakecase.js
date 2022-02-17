@@ -54,14 +54,16 @@ export default function Snakecase () {
 
 	function updateGame () {
 		if (pause) return;
-		let newCell = [...positions[0]];
+		let [x, y] = [...positions[0]];
 		switch (direction) {
-			case directions.Up: newCell[0]--; break;
-			case directions.Right: newCell[1]++; break;
-			case directions.Down: newCell[0]++; break;
-			case directions.Left: newCell[1]--; break;
+			case directions.Up: x--; break;
+			case directions.Right: y++; break;
+			case directions.Down: x++; break;
+			case directions.Left: y--; break;
 		}
-		let newPositions = [newCell, ...positions];
+		x = (x + rows) % rows;
+		y = (y + columns) % columns;
+		let newPositions = [[x, y], ...positions];
 		newPositions.pop();
 		setPositions(newPositions);
 	}
