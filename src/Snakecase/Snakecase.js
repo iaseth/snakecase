@@ -104,7 +104,7 @@ export default function Snakecase () {
 	});
 
 	return (
-		<div className="Snakecase bg-slate-300">
+		<div className="Snakecase bg-slate-300 text-white font-bold">
 			<div className="max-w-4xl mx-auto min-h-screen flex flex-col gap-y-2">
 				<Header />
 				<div id="Maze" className="grow flex bg-slate-50 relative overflow-hidden border-4 border-slate-400">
