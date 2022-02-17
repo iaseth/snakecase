@@ -7,12 +7,12 @@ import Footer from './Footer';
 
 import {getRowMarkings, getColumnMarkings} from './Markings';
 
+const rows = 27, columns = 48;
+const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
+
 
 
 export default function Snakecase () {
-	const rows = 27, columns = 48;
-	const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
-
 	const [pause, setPause] = React.useState(true);
 	const [direction, setDirection] = React.useState(directions.Right);
 
