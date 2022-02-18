@@ -15,13 +15,17 @@ export default function Header ({
 				<div className="text-3xl ml-2">{level}</div>
 			</div>
 
-			<div className="px-2 py-1 w-12 flex bg-slate-700 border-y-4 border-green-500">
+			<div className="px-2 py-1 w-16 flex bg-slate-700 border-y-4 border-green-500">
 				<div className="grow my-auto text-right text-base">
 					{calories} | {levelLength}
 				</div>
 			</div>
 
-			<div className="px-2 py-1 w-12 flex bg-slate-700 border-y-4 border-green-500">
+			<div className="px-3 py-3 w-12 flex bg-slate-700 border-y-4 border-red-500">
+				{pause && <div className="w-full h-full rounded-full bg-red-500"></div>}
+			</div>
+
+			<div className="px-2 py-1 w-12 flex bg-slate-700 border-y-4 border-yellow-500">
 				<div className="grow my-auto text-right text-base">
 					{foodLife}
 				</div>
