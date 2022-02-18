@@ -103,13 +103,14 @@ export default function Snakecase () {
 		let justHadDinner = false;
 		if (x === foodPosition[0] && y === foodPosition[1]) {
 			let scoreAdder = Math.ceil(foodLife * 10 / maxFoodLife);
-			if (calories < levelLength - 1) {
-				setScore(score => score + scoreAdder);
-				setCalories(calories => calories + 1);
-			} else {
+			if (calories + 1 === levelLength) {
+				// current level is complete
 				setLevel(level => level + 1);
 				setScore(score => score + scoreAdder + levelBonus);
 				setCalories(0);
+			} else {
+				setScore(score => score + scoreAdder);
+				setCalories(calories => calories + 1);
 			}
 			justHadDinner = true;
 		} else {
