@@ -9,6 +9,7 @@ import {getRowMarkings, getColumnMarkings} from './Markings';
 
 const rows = 18, columns = 32;
 const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
+const levelLength = 5;
 
 
 
@@ -16,6 +17,9 @@ export default function Snakecase () {
 	const [pause, setPause] = React.useState(true);
 	const [direction, setDirection] = React.useState(directions.Right);
 	const [score, setScore] = React.useState(0);
+
+	const [level, setLevel] = React.useState(1);
+	const [calories, setCalories] = React.useState(0);
 
 	const [height, setHeight] = React.useState(0);
 	const [width, setWidth] = React.useState(0);
@@ -99,6 +103,12 @@ export default function Snakecase () {
 		if (x === foodPosition[0] && y === foodPosition[1]) {
 			let scoreAdder = Math.ceil(foodLife * 10 / maxFoodLife);
 			setScore(score => score + scoreAdder);
+			if (calories < levelLength - 1) {
+				setCalories(calories => calories + 1);
+			} else {
+				setLevel(level => level + 1);
+				setCalories(0);
+			}
 			justHadDinner = true;
 		} else {
 			newPositions.pop();
@@ -150,7 +160,9 @@ export default function Snakecase () {
 	});
 
 	let headerProps = {
-		direction, foodLife, pause, score
+		direction, foodLife,
+		level, levelLength, calories,
+		pause, score
 	};
 
 	return (
