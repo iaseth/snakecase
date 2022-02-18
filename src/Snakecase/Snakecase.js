@@ -10,6 +10,7 @@ import {getRowMarkings, getColumnMarkings} from './Markings';
 const rows = 18, columns = 32;
 const directions = {Up: 0, Right: 1, Down: 2, Left: 3};
 const levelLength = 5;
+const levelBonus = 20;
 
 
 
@@ -102,11 +103,12 @@ export default function Snakecase () {
 		let justHadDinner = false;
 		if (x === foodPosition[0] && y === foodPosition[1]) {
 			let scoreAdder = Math.ceil(foodLife * 10 / maxFoodLife);
-			setScore(score => score + scoreAdder);
 			if (calories < levelLength - 1) {
+				setScore(score => score + scoreAdder);
 				setCalories(calories => calories + 1);
 			} else {
 				setLevel(level => level + 1);
+				setScore(score => score + scoreAdder + levelBonus);
 				setCalories(0);
 			}
 			justHadDinner = true;
